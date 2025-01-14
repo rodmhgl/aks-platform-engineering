@@ -26,7 +26,7 @@ variable "agents_size" {
 variable "kubernetes_version" {
   description = "Specifies which Kubernetes release to use. The default used is the latest Kubernetes version available in the location."
   type        = string
-  default     = null
+  default     = "1.30.6"
 }
 
 variable "green_field_application_gateway_for_ingress"{ 

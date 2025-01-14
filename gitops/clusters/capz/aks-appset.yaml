@@ -5,12 +5,12 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - clusters:
-      selector:
-        matchExpressions:
-          - key: akuity.io/argo-cd-cluster-name
-            operator: NotIn
-            values: [in-cluster]
+    - clusters:
+        selector:
+          matchExpressions:
+            - key: akuity.io/argo-cd-cluster-name
+              operator: NotIn
+              values: [in-cluster]
   template:
     metadata:
       name: aks0
@@ -21,19 +21,19 @@ spec:
         server: https://kubernetes.default.svc
       project: default
       source:
-        repoURL: 'https://mboersma.github.io/cluster-api-charts'
+        repoURL: "https://mboersma.github.io/cluster-api-charts"
         chart: azure-managed-cluster
         targetRevision: v0.2.4
         helm:
           valuesObject:
-            subscriptionID: '{{metadata.annotations.subscription_id}}'
+            subscriptionID: "{{metadata.annotations.subscription_id}}"
             identity:
-              clientID: '{{metadata.annotations.akspe_identity_id}}'
-              tenantID: '{{metadata.annotations.tenant_id}}'
+              clientID: "{{metadata.annotations.akspe_identity_id}}"
+              tenantID: "{{metadata.annotations.tenant_id}}"
               type: WorkloadIdentity
             controlplane:
               ## Optional SSH public key data (must be valid)
-              sshPublicKey: ''
+              sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxQGkPCAVyPB1lx0RtmHhFjIcu2atkpuPTfl9zdrZK9oV8a8G5ADpP9alp2ND/74fHTMVznXHA7d621fDME2LUkmpqXtx9BMV9laljAoCKGIoWwaHAM7cJrKnXIjUJ7E+QcB2dzA5frDVOMKcl3dAwA49aoPVhgpWwZB142pomuW3OY27YxDjjjdT+IG0J2Av+f33rDrNxeOwW25M8S6ywxO7ELofzLIwbKdqOgcPcLVtcE09gWr+xAcs7rYmfiGSApJzZdcal7yem2hp57NUglhPoQFtx79JeLXGjBpUXWV1VGmJ696XINaqNwxzdvYsu3cdgphMZNuBKYfLVUNrXekhK6+4yOGLlWyp6WbaZIfzfnVs4Xd1Co+8oDekssgNuS95ZfEERt3dZqUUEC11xv8fvZZlzDoMspTa9+wJzjL7bA6jZuZW44suQCd0auUSoXde97mZQZivwMawZpRV+adyb5+ao9xGJNgMYtNTwoa1oVx1HGhai48TnSyTyhQ9ZJHx6aOBJjeCcGiQ4xwF9A1WCBmmiehIMsUTPa9oNDH5uLZ3d2VnpWBxoMSQGLeevrQQ2WtxIIbnpI0zslL7I2d+0+NgUNYbYkS6RZrq8g+3Xlx8WiheK+HzpKUiQ/WpBmg5LMfKVDVz3HcVYpF2e18+GkbEVs8nJYy+SKC/eVw== vscode@codespaces-e01e12"
             defaults:
               agentPool:
                 sku: Standard_D2s_v3

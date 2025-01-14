@@ -144,7 +144,7 @@ resource "azurerm_postgresql_flexible_server_firewall_rule" "allow_all" {
 
 module "aks" {
   source                            = "Azure/aks/azurerm"
-  version                           = "9.1.0"
+  version                           = "9.3.0"
   resource_group_name               = azurerm_resource_group.this.name
   location                          = var.location
   kubernetes_version                = var.kubernetes_version
